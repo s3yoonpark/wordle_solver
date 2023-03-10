@@ -54,7 +54,7 @@ void filter(string input, vector<string>& answer, vector<string>& instruction, s
 }
 
 string recommendation(vector<string>& guess, vector<string>& answer, set<char>& green, set<char>& yellow, set<char>& grey){
-	if (answer.size() == 1) return answer[0]; 
+	if (answer.size() <= 2) return answer[0]; 
 	unordered_map <char, int> mp; 
 	for (string word : answer) {
 		for (char i : word) {
@@ -89,6 +89,7 @@ string recommendation(vector<string>& guess, vector<string>& answer, set<char>& 
 	for (string word : guess) {
 		int sum = 0; 
 		set<char> s(word.begin(), word.end()); 
+		if (s.size() != word.length()) continue; 
 		for (char i : s) {
 			sum += mp[i]; 
 		}
